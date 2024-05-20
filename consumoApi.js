@@ -1,8 +1,7 @@
-
 export async function obtenerDatos(id) {
 const URL = "https://pokeapi.co/api/v2/pokemon/"
 
-if(isNumber(id)){
+if(isNumber(id) && filterNumber(id)){
 
   try {
     const response = await fetch(URL + id);
@@ -19,11 +18,16 @@ if(isNumber(id)){
   }
 
 }else{
-  return "Por favor ingrese un número"
+  console.log("Por favor ingrese un número valido")
+  return false
 }
  
   function isNumber(n){
     return typeof n === "number"
+  }
+
+  function filterNumber(n){
+    return (n >= 1 && n <= 1025)
   }
 }
 
